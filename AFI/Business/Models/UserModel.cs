@@ -6,7 +6,7 @@ namespace Business.Models
 {
     public class UserModel
     {
-        [Required(ErrorMessage = "A forename is needed to create your user."]
+        [Required(ErrorMessage = "A forename is needed to create your user.")]
         public string Forename { get; set; }
         [Required(ErrorMessage = "A surname is needed to create your user.")]
         public string Surname { get; set; }

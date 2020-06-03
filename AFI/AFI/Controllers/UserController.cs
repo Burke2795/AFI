@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Interfaces;
+using Business.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace AFI.Controllers
@@ -7,10 +9,22 @@ namespace AFI.Controllers
     [Route("/api/[controller]")]
     public class UserController : ControllerBase
     {
-        [HttpPost]
-        public IActionResult Create()
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
         {
-            return new JsonResult("Success");
+            _userService = userService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] UserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(await _userService.CreateUser(model));
+            }
+
+            return BadRequest(model);
         }
     }
 }
