@@ -18,9 +18,9 @@ namespace AFI.Validators
         protected override ValidationResult IsValid(object value,
             ValidationContext validationContext)
         {
-            var userAge = ((DateTime)value);
+            var userAge = ((DateTime?)value);
 
-            if (!CheckUserIsOverRequiredAge(Age, userAge))
+            if (userAge != null && !CheckUserIsOverRequiredAge(Age, userAge))
             {
                 return new ValidationResult(GetErrorMessage());
             }
@@ -28,12 +28,12 @@ namespace AFI.Validators
             return ValidationResult.Success;
         }
 
-        private bool CheckUserIsOverRequiredAge(int requiredAge, DateTime dob)
+        private bool CheckUserIsOverRequiredAge(int requiredAge, DateTime? dob)
         {
             int age;
-            age = DateTime.Now.Year - dob.Year;
+            age = DateTime.Now.Year - dob.Value.Year;
 
-            age -= Convert.ToInt32(DateTime.Now.Date < dob.Date.AddYears(age));
+            age -= Convert.ToInt32(DateTime.Now.Date < dob?.Date.AddYears(age));
 
             return age >= requiredAge;
         }

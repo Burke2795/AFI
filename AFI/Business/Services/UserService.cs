@@ -19,7 +19,7 @@ namespace Business.Services
         {
             var referenceNumber = GenerateReferenceNumber();
 
-            return await _userRepository.CreateUser(model.Forename, model.Surname, model.DateofBirth, model.Email, referenceNumber);
+            return await _userRepository.CreateUser(model.Forename, model.Surname, model.DateOfBirth, model.Email, referenceNumber);
         }
 
         private string GenerateReferenceNumber()
