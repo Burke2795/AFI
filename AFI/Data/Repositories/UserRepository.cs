@@ -16,7 +16,7 @@ namespace Data.Repositories
             _context = context;
         }
 
-        public async Task<int> CreateUser(string forename, string surname, DateTime? dob, string email, string referenceNumber)
+        public async Task<int> CreateUser(string forename, string surname, DateTime? dob, string email, string referenceNumber, bool online)
         {
             var entity = new Users
             {
@@ -24,7 +24,8 @@ namespace Data.Repositories
                 Surname = surname,
                 Email = email,
                 DateOfBirth = dob,
-                ReferenceNumber = referenceNumber
+                ReferenceNumber = referenceNumber,
+                Online = online
             };
 
             await _context.AddAsync(entity);

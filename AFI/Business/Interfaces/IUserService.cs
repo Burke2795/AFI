@@ -5,6 +5,6 @@ namespace Business.Interfaces
 {
     public interface IUserService
     {
-        Task<int> CreateUser(UserModel model);
+        Task<int> CreateUser(UserModel model, bool online = true);
     }
 }

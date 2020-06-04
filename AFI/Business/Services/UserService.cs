@@ -15,11 +15,11 @@ namespace Business.Services
             _userRepository = userRepository;
         }
 
-        public async Task<int> CreateUser(UserModel model)
+        public async Task<int> CreateUser(UserModel model, bool online = true)
         {
             var referenceNumber = GenerateReferenceNumber();
 
-            return await _userRepository.CreateUser(model.Forename, model.Surname, model.DateOfBirth, model.Email, referenceNumber);
+            return await _userRepository.CreateUser(model.Forename, model.Surname, model.DateOfBirth, model.Email, referenceNumber, online);
         }
 
         private string GenerateReferenceNumber()

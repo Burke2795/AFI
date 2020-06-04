@@ -9,9 +9,11 @@ namespace Data.Entities
         public int Id { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Forename { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Surname { get; set; }
 
         [Required]
@@ -21,5 +23,7 @@ namespace Data.Entities
         public DateTime? DateOfBirth { get; set; }
 
         public string Email { get; set; }
+
+        public bool Online { get; set; }
     }
 }
